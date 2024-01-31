@@ -1,70 +1,125 @@
-# PRA FEIRA - Sistema de Gestão de Vendas
-[![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Code Climate][climate-image]][climate-url] [![Test Coverage][coverage-image]][coverage-url]
+<a href="https://flutter.dev/">
+  <h1 align="center">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://storage.googleapis.com/cms-storage-bucket/6e19fee6b47b36ca613f.png">
+      <img alt="Flutter" src="https://storage.googleapis.com/cms-storage-bucket/c823e53b3a1a7b0d36a9.png">
+    </picture>
+  </h1>
+</a>
 
-No Vagalume temos a **performance** como um dos itens mais importantes no desenvolvimento do sistema. Devido a grande quantidade de acessos no site, temos como prioridade o carregamento rápido e escalabilidade da aplicação. Utilizar as funções encontradas na API não devem deixar o seu site mais lento ou gerar problemas de estabilidade em nosso sistema. Nesta documentação devemos abordar as melhores práticas de como fazer requisições de forma assíncrona.
+[![Flutter CI Status](https://flutter-dashboard.appspot.com/api/public/build-status-badge?repo=flutter)](https://flutter-dashboard.appspot.com/#/build?repo=flutter)
+[![Discord badge][]][Discord instructions]
+[![Twitter handle][]][Twitter badge]
+[![codecov](https://codecov.io/gh/flutter/flutter/branch/master/graph/badge.svg?token=11yDrJU2M2)](https://codecov.io/gh/flutter/flutter)
+[![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/5631/badge)](https://bestpractices.coreinfrastructure.org/projects/5631)
+[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/flutter/flutter/badge)](https://deps.dev/project/github/flutter%2Fflutter)
+[![SLSA 1](https://slsa.dev/images/gh-badge-level1.svg)](https://slsa.dev)
 
-**IMPORTANTE**: ~~O uso da API é totalmente gratuito, mas é muito importante que o [logo](http://api.vagalume.com.br/terms/) e link para a página correspondente no Vagalume estejam presentes. Leia os [termos de uso](http://api.vagalume.com.br/terms/), e verifique se o seu site ou aplicação estão de acordo.~~
+Flutter is Google's SDK for crafting beautiful, fast user experiences for
+mobile, web, and desktop from a single codebase. Flutter works with existing
+code, is used by developers and organizations around the world, and is free and
+open source.
 
-**IMPORTANTE**: Para usar Vagalume API, é necessário que seu aplicativo tenha [credenciais de autorização](https://auth.vagalume.com.br/). Cadastre-se no Vagalume e crie sua chave de API. Esta credencial será requerida a partir do dia **23/11/2015**.
+## Documentation
 
-## Instalação
+* [Install Flutter](https://flutter.dev/get-started/)
+* [Flutter documentation](https://docs.flutter.dev/)
+* [Development wiki](https://github.com/flutter/flutter/wiki)
+* [Contributing to Flutter](https://github.com/flutter/flutter/blob/master/CONTRIBUTING.md)
 
-```sh
-$ npm install --save vagalume
-```
+For announcements about new releases, follow the
+[flutter-announce@googlegroups.com](https://groups.google.com/forum/#!forum/flutter-announce)
+mailing list. Our documentation also tracks [breaking
+changes](https://docs.flutter.dev/release/breaking-changes) across releases.
 
-## Como usar
-> **ATENÇÃO**: Todos os métodos retornam um Promise.
+## Terms of service
 
-```js
-var Vagalume = require('vagalume');
-var api = new Vagalume();
+The Flutter tool may occasionally download resources from Google servers. By
+downloading or using the Flutter SDK, you agree to the Google Terms of Service:
+https://policies.google.com/terms
 
-api.getNoticias().then(function (data) {
-  // faça o que quiser com o retorno  
-});
-```
+For example, when installed from GitHub (as opposed to from a prepackaged
+archive), the Flutter tool will download the Dart SDK from Google servers
+immediately when first run, as it is used to execute the `flutter` tool itself.
+This will also occur when Flutter is upgraded (e.g. by running the `flutter
+upgrade` command).
 
-```sh
-# creates a browser.js
-$ npm run browser
-```
+## About Flutter
 
-## Documentação
+We think Flutter will help you create beautiful, fast apps, with a productive,
+extensible and open development model, whether you're targeting iOS or Android,
+web, Windows, macOS, Linux or embedding it as the UI toolkit for a platform of
+your choice.
 
-#### getArtista(nome)
-> Além das letras existem várias informações disponíveis sobre o artista. Dados como quantidade de acessos, posição no ranking, gênero musical, músicas mais acessadas do artista, discografia e muito mais. ([ver mais](http://api.vagalume.com.br/docs/artistas/))
+### Beautiful user experiences
 
-#### getByTrecho(trecho, [limite])
-> Um dos recursos mais interessantes para buscar letras de músicas é a possibilidade de consultar por trecho. Muitas vezes o usuário não lembra do título da música, por isso, este segmento da API pode retornar as músicas que possúem tal trecho buscado. ([ver mais](http://api.vagalume.com.br/docs/search/#mus))
+We want to enable designers to deliver their full creative vision without being
+forced to water it down due to limitations of the underlying framework.
+Flutter's [layered architecture] gives you control over every pixel on the
+screen and its powerful compositing capabilities let you overlay and animate
+graphics, video, text, and controls without limitation. Flutter includes a full
+[set of widgets][widget catalog] that deliver pixel-perfect experiences whether
+you're building for iOS ([Cupertino]) or other platforms ([Material]), along with
+support for customizing or creating entirely new visual components.
 
-#### getDiscografia(nome)
-> O Vagalume possui também um banco de dados organizando as discografias (álbuns) de cada artista. Como todas as outras chamadas da API, o retorno é feito por JSON e pode e deve ser feito direto pelo navegador do usuário. ([ver mais](http://api.vagalume.com.br/docs/discografia/))
+<p align="center"><img src="https://github.com/flutter/website/blob/main/src/assets/images/docs/homepage/reflectly-hero-600px.png?raw=true" alt="Reflectly hero image"></p>
 
-#### getHotspots()
-> O Hot Spot é o nome da seção do Vagalume que é atualizada diariamente na home com novidades de clipes, músicas e conteúdo relevante para os usuários site. Milhões de usuários entram no Vagalume diariamente para saber o que há de novo no mundo da música. ([ver mais](http://api.vagalume.com.br/docs/hotspot/))
+### Fast results
 
-#### getNoticias()
-> Você pode integrar as chamadas das notícias do Vagalume em seu site. Assim, você poderá oferecer um conteúdo bastante atualizados sobre o que acontece no mundo da música. No código abaixo, mostramos as últimas 20 notícias publicadas com informações para link e imagem. ([ver mais](http://api.vagalume.com.br/docs/news/))
+Flutter is fast. It's powered by hardware-accelerated 2D graphics
+libraries like [Skia] (that underpins Chrome and Android) and
+[Impeller]. We architected Flutter to
+support glitch-free, jank-free graphics at the native speed of your device.
 
-#### getImagens()
-> O Vagalume possui também um banco de imagens organizadas por galerias. Disponibilizadas pelo próprio artista no caso como (Divulgação) ou as que os prórpios usuários enviam (Enviadas pelos usuários). ([ver mais](http://api.vagalume.com.br/docs/image/))
+Flutter code is powered by the world-class [Dart platform], which enables
+compilation to 32-bit and 64-bit ARM machine code for iOS and Android,
+JavaScript and WebAssembly for the web, as well as Intel x64 and ARM
+for desktop devices.
 
-#### getRanks()
-> As informações de ranking no Vagalume são constantemente atualizadas e representam a tendência musical conforme milhões de acessos diários a páginas de letras, artistas, álbuns dentre outros. As informações são bem seccionadas, permitindo uso variado e fornecendo inúmeras possibilidades de aplicação em seu projeto.. ([ver mais](http://api.vagalume.com.br/docs/rank/))
+<p align="center"><img src="https://github.com/flutter/website/blob/main/src/assets/images/docs/homepage/dart-diagram-small.png?raw=true" alt="Dart diagram"></p>
 
-## License
+### Productive development
 
-MIT © [Gabriel Pedro](https://gpedro.net)
+Flutter offers [stateful hot reload][Hot reload], allowing you to make changes to your code
+and see the results instantly without restarting your app or losing its state.
 
+[![Hot reload animation][]][Hot reload]
 
-[npm-image]: https://badge.fury.io/js/vagalume.svg
-[npm-url]: https://npmjs.org/package/vagalume
-[travis-image]: https://travis-ci.org/gpedro/node-vagalume.svg?branch=master
-[travis-url]: https://travis-ci.org/gpedro/node-vagalume
-[daviddm-image]: https://david-dm.org/gpedro/node-vagalume.svg?theme=shields.io
-[daviddm-url]: https://david-dm.org/gpedro/node-vagalume
-[coverage-image]: https://codeclimate.com/github/gpedro/node-vagalume/badges/coverage.svg
-[coverage-url]: https://codeclimate.com/github/gpedro/node-vagalume/coverage
-[climate-image]: https://codeclimate.com/github/gpedro/node-vagalume/badges/gpa.svg
-[climate-url]: https://codeclimate.com/github/gpedro/node-vagalume
+### Extensible and open model
+
+Flutter works with any development tool (or none at all), and also includes
+editor plug-ins for both [Visual Studio Code] and [IntelliJ / Android Studio].
+Flutter provides [tens of thousands of packages][Flutter packages] to speed your
+development, regardless of your target platform. And accessing other native code
+is easy, with support for both FFI ([on Android][Android FFI], [on iOS][iOS FFI],
+[on macOS][macOS FFI], and [on Windows][Windows FFI]) as well as
+[platform-specific APIs][platform channels].
+
+Flutter is a fully open-source project, and we welcome contributions.
+Information on how to get started can be found in our
+[contributor guide](CONTRIBUTING.md).
+
+[flutter.dev]: https://flutter.dev
+[Discord instructions]: https://github.com/flutter/flutter/wiki/Chat
+[Discord badge]: https://img.shields.io/discord/608014603317936148?logo=discord
+[Twitter handle]: https://img.shields.io/twitter/follow/flutterdev.svg?style=social&label=Follow
+[Twitter badge]: https://twitter.com/intent/follow?screen_name=flutterdev
+[layered architecture]: https://docs.flutter.dev/resources/inside-flutter
+[architectural overview]: https://docs.flutter.dev/resources/architectural-overview
+[widget catalog]: https://flutter.dev/widgets/
+[Cupertino]: https://docs.flutter.dev/development/ui/widgets/cupertino
+[Material]: https://docs.flutter.dev/development/ui/widgets/material
+[Skia]: https://skia.org/
+[Dart platform]: https://dart.dev/
+[Hot reload animation]: https://github.com/flutter/website/blob/main/src/assets/images/docs/tools/android-studio/hot-reload.gif?raw=true
+[Hot reload]: https://docs.flutter.dev/development/tools/hot-reload
+[Visual Studio Code]: https://marketplace.visualstudio.com/items?itemName=Dart-Code.flutter
+[IntelliJ / Android Studio]: https://plugins.jetbrains.com/plugin/9212-flutter
+[Flutter packages]: https://pub.dev/flutter
+[Android FFI]: https://docs.flutter.dev/development/platform-integration/android/c-interop
+[iOS FFI]: https://docs.flutter.dev/development/platform-integration/ios/c-interop
+[macOS FFI]: https://docs.flutter.dev/development/platform-integration/macos/c-interop
+[Windows FFI]: https://docs.flutter.dev/development/platform-integration/windows/building#integrating-with-windows
+[platform channels]: https://docs.flutter.dev/development/platform-integration/platform-channels
+[interop example]: https://github.com/flutter/flutter/tree/master/examples/platform_channel
+[Impeller]: https://docs.flutter.dev/perf/impeller
